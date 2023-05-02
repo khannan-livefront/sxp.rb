@@ -21,14 +21,12 @@ module SXP; class Reader
     end
 
     ##
+    # We don't need numerics. We just work with characters and strings
     # @return [Object]
     def read_atom
       case buffer = read_literal
-        when '.'      then buffer.to_sym
-        when RATIONAL then Rational($1.to_i, $2.to_i)
-        when DECIMAL  then Float(buffer) # FIXME?
-        when INTEGER  then Integer(buffer)
-        else buffer.to_sym
+      when '.'      then buffer.to_sym
+      else buffer.to_sym
       end
     end
 
